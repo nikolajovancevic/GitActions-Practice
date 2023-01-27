@@ -1,0 +1,24 @@
+name: Actions Workflow
+
+on: [push]
+
+
+jobs:
+  run-github-actions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Simple SJ Action
+        id: greet
+        # can reference local action or action on github repo('@' pointing to specific version(preferable), branch, commit)
+        # [github username]/[specific-action]@[version]
+        uses: actions/hello-world-javascript-action@v1
+        # provide input to an action
+        with:
+          who-to-greet: Dzon
+        # actions can produce outputs
+      - name: Log Greeting Time
+        # names of the outputs should be in the documentation of the action being used
+        run: echo "${{ steps.greet.outputs.time }}"
+          
+
+        
