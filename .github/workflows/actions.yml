@@ -12,7 +12,7 @@ jobs:
           ls -a
 
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v1
 
       - name: List Files After Checkout
         run: 
@@ -28,7 +28,7 @@ jobs:
         with:
           who-to-greet: Dzon
         # actions can produce outputs
-        
+
       - name: Log Greeting Time
         # names of the outputs should be in the documentation of the action being used
         run: echo "${{ steps.greet.outputs.time }}"
