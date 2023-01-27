@@ -2,7 +2,6 @@ name: Actions Workflow
 
 on: [push]
 
-
 jobs:
   run-github-actions:
     runs-on: ubuntu-latest
@@ -10,7 +9,16 @@ jobs:
       - name: List Files
         run: |
           pwd 
-          ls
+          ls -a
+
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: List Files After Checkout
+        run: 
+          pwd
+          ls -a
+
       - name: Simple SJ Action
         id: greet
         # can reference local action or action on github repo('@' pointing to specific version(preferable), branch, commit)
@@ -20,6 +28,7 @@ jobs:
         with:
           who-to-greet: Dzon
         # actions can produce outputs
+        
       - name: Log Greeting Time
         # names of the outputs should be in the documentation of the action being used
         run: echo "${{ steps.greet.outputs.time }}"
